@@ -1,6 +1,6 @@
 {
   "name": "discourse-iframe",
-  "about_url": null,
+  "about_url": "https://github.com/scossar/discourse-iframe-theme-component",
   "license_url": null,
   "component": true
 }
