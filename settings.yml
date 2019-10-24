@@ -7,4 +7,4 @@ discourse_iframe_width:
 discourse_iframe_height:
   default: 400
 svg_icons:
-  default: "asterisk"
+  default: "brush"
