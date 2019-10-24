@@ -1,0 +1,10 @@
+discourse_iframe_template:
+  default: ""
+  description:
+    en: "Example: `https://example.com/embed/%{iframe_id}` You will also need to add this URL, without the placeholder, to your allowed iframes Site Setting."
+discourse_iframe_height:
+  default: 400
+discourse_iframe_width:
+  default: 600
+svg_icons:
+  default: "asterisk"

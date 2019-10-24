@@ -1,0 +1,4 @@
+en:
+  discourse_iframe:
+    id_placeholder: "IFRAME_ID"
+    button_text: "Insert Iframe"

@@ -1,0 +1,45 @@
+<script type="text/discourse-plugin" version="0.8.32">
+const { iconNode } = require("discourse-common/lib/icon-library"),
+    idPlaceholder = I18n.t(themePrefix("discourse_iframe.id_placeholder")),
+    buttonText = I18n.t(themePrefix("discourse_iframe.button_text")),
+    iframeTemplate = settings.discourse_iframe_template,
+    iframeHeight = settings.discourse_iframe_height,
+    iframeWidth = settings.discourse_iframe_width;
+
+let translations = I18n.translations[I18n.currentLocale()].js,
+    asterisk = iconNode("asterisk"),
+    iframeUrl;
+
+if (!translations) {
+  translations = {};
+}
+if (!translations.composer) {
+  translations.composer = {};
+}
+
+translations.composer.id_placeholder = idPlaceholder;
+translations.insert_iframe_button = buttonText;
+
+api.onToolbarCreate(toolbar => {
+    toolbar.addButton({
+      id: "discourse-iframe",
+      group: "extras",
+      icon: "asterisk",
+      title: "insert_iframe_button",
+      perform: (e) => {
+         e.applySurround("[wrap=iframe id=", "][/wrap]", "id_placeholder");
+      }
+    });
+  });
+
+api.decorateCooked($cooked => {
+       $cooked.find(".d-wrap[data-wrap=iframe]").each((index, elem) => {
+            let $elem = $(elem),
+                id = $elem.data("id"),
+                iframeUrl = iframeTemplate.replace("%{iframe_id}", id);
+            if (id && id !== idPlaceholder) {
+                    $elem.replaceWith(`<iframe src="${iframeUrl}" height=${iframeHeight} width=${iframeWidth} frameborder=0></iframe>`);
+            }
+      });
+  }, { id: 'discourse-iframe-theme-component'}, )
+</script>
